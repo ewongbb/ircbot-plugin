@@ -15,7 +15,7 @@ import org.pircbotx.Colors;
  */
 // See http://flylib.com/books/en/4.74.1.47/1/ for some tips on IRC colors
 public class IRCColorizer {
-    
+
     /**
      * Very simple pattern to recognize test results.
      */
@@ -25,7 +25,7 @@ public class IRCColorizer {
      * Colorize the message line if certain keywords are found in it. 
      */
     public static String colorize(String message){
-        
+
         if(message.contains("Starting ")) {
             return message;
         } else {
@@ -42,9 +42,9 @@ public class IRCColorizer {
     
     private static String colorForBuildResult(String line) {
         for (ResultTrend result : ResultTrend.values()) {
-            
+
             String keyword = result.getID();
-            
+
             int index = line.indexOf(keyword);
             if (index != -1) {
                 final String color;
@@ -59,7 +59,7 @@ public class IRCColorizer {
                     case ABORTED: color = Colors.BOLD + Colors.LIGHT_GRAY; break;
                     default: return line;
                 }
-                
+
                 return line.substring(0, index) + color + keyword + Colors.NORMAL
                         + line.substring(index + keyword.length(), line.length());
             }
